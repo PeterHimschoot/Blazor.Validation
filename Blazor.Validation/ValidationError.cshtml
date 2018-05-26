@@ -1,0 +1,52 @@
+﻿@using System.ComponentModel
+@using Microsoft.AspNetCore.Blazor.Components
+
+@if (Errors.Any())
+{
+  <div class="validationerror">
+    <ul>
+      @foreach (var error in Errors)
+      {
+        <li>@error</li>
+      }
+    </ul>
+  </div>
+}
+
+@functions {
+
+[Parameter]
+protected object Subject { get; set; }
+
+[Parameter]
+protected string Property { get; set; }
+
+public IEnumerable<string> Errors
+{
+  get
+  {
+    switch (Subject)
+    {
+      case IDataErrorInfo ide:
+        string error = ide[Property];
+        if (error != null)
+        {
+          yield return error;
+        }
+        else
+        {
+          yield break;
+        }
+        break;
+      case INotifyDataErrorInfo ine:
+        foreach (var err in ine.GetErrors(Property))
+        {
+          yield return (string)err;
+        }
+        break;
+      case null:
+        yield break;
+    }
+  }
+}
+}

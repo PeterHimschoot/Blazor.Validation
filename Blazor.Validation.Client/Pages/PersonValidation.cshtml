@@ -1,0 +1,24 @@
+﻿@page  "/validation"
+@addTagHelper *, Blazor.Validation
+
+<div class="validation">
+  <p>
+    <label for="firstname">First Name</label>
+    <input id="firstname" type="text" bind="@Person.FirstName" />
+    <ValidationError Subject="@Person" Property="@nameof(Person.FirstName)" />
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input id="lastname" type="text" bind="@Person.LastName" />
+    <ValidationError Subject="@Person" Property="@nameof(Person.LastName)" />
+  </p>
+  <p>
+    <label for="age">Age</label>
+    <input id="age" type="number" bind="@Person.Age" />
+    <ValidationError Subject="@Person" Property="@nameof(Person.Age)" />
+  </p>
+</div>
+
+@functions {
+public Person Person { get; set; } = new Person { FirstName = "John", LastName = "Doe", Age = 32 };
+}

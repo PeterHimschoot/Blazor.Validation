@@ -12,10 +12,30 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.3.0" />
+    <PackageReference Include="Blazor.Extensions.Logging" Version="0.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Blazor.Validation.Shared\Blazor.Validation.Shared.csproj" />
+    <ProjectReference Include="..\Blazor.Validation\Blazor.Validation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\PersonValidation.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\PersonValidation.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\PersonValidation.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Pages\ValidationError.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>
