@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Blazor.Validation.Shared
 {
-  public class Person : /*IDataErrorInfo,*/ INotifyDataErrorInfo
+  public class Person : IDataErrorInfo, INotifyDataErrorInfo
   {
     public string FirstName { get; set; }
 
@@ -45,6 +45,14 @@ namespace Blazor.Validation.Shared
         if (string.IsNullOrEmpty(this.FirstName))
         {
           yield return $"{nameof(FirstName)} is mandatory";
+        }
+        if( this.FirstName.Length < 2 )
+        {
+          yield return $"{nameof(FirstName)} '{this.FirstName}' is too short.";
+        }
+        if( this.FirstName == "Q")
+        {
+          yield return $"{nameof(FirstName)} 'Q' is reserved for extra-dimensional beings!";
         }
       }
       if (property == null || property == nameof(this.LastName))

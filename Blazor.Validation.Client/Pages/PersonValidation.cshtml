@@ -18,9 +18,16 @@
     <ValidationError Subject="@Person" Property="@nameof(Person.Age)" />
   </p>
   <p>
+    You should see two errors here. This is normal because of missing parameters.
     <ValidationError/>
     <ValidationError Subject="@Person"/>
   </p>
+</div>
+<hr/>
+<div>
+  <ValidationSummary Subject="@Person"/>
+  You should see an error here. This is normal because of missing parameters.
+  <ValidationSummary/>
 </div>
 
 @functions {

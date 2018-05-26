@@ -30,6 +30,17 @@
           case null:
             yield return $"{nameof(Subject)} has not been set!";
             yield break;
+          case INotifyDataErrorInfo ine:
+            if( Property == null )
+            {
+              yield return $"{nameof(Property)} has not been set!";
+              yield break;
+            }
+            foreach (var err in ine.GetErrors(Property))
+            {
+              yield return (string)err;
+            }
+            break;
           case IDataErrorInfo ide:
             if( Property == null )
             {
@@ -44,12 +55,6 @@
             else
             {
               yield break;
-            }
-            break;
-          case INotifyDataErrorInfo ine:
-            foreach (var err in ine.GetErrors(Property))
-            {
-              yield return (string)err;
             }
             break;
         }

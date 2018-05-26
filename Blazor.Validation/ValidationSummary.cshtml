@@ -1,0 +1,73 @@
+﻿@using System.ComponentModel
+@using Microsoft.AspNetCore.Blazor.Components
+@using System.Reflection
+
+@if (Errors.Any())
+{
+  <div class="validationsummary">
+    <ul>
+      @foreach (var error in Errors)
+      {
+        <li>@error</li>
+      }
+    </ul>
+  </div>
+}
+
+@functions {
+
+    [Parameter]
+    protected object Subject { get; set; }
+
+    public IEnumerable<string> Errors
+    {
+      get
+      {
+        string error = null;
+        switch (Subject)
+        {
+          case null:
+            yield return $"{nameof(Subject)} has not been set!";
+            yield break;
+          case INotifyDataErrorInfo ine:
+            foreach (var property in PropertyNames)
+            {
+              foreach (string err in ine.GetErrors(property))
+              {
+                yield return err;
+              }
+            }
+            break;
+          case IDataErrorInfo ide:
+            // IDataErrorInfo.Error: what is wrong with this object.
+            error = ide.Error;
+            if( error != null )
+            {
+              yield return error;
+            }
+            // IDataErrorInfo[property]: what is wrong with this object's property
+            foreach (var property in PropertyNames)
+            {
+              error = ide[property];
+              if (error != null)
+              {
+                yield return ide[property];
+              }
+            }
+            break;
+        }
+      }
+    }
+
+    private List<string> propertyNames = null;
+
+    private List<string> PropertyNames
+    => propertyNames ?? (propertyNames = GetSubjectPropertyNames().ToList());
+
+    private IEnumerable<string> GetSubjectPropertyNames()
+    {
+      return Subject.GetType()
+                    .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Select(pi => pi.Name);
+    }
+}
