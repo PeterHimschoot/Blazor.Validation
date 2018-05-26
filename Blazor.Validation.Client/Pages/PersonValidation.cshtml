@@ -17,6 +17,10 @@
     <input id="age" type="number" bind="@Person.Age" />
     <ValidationError Subject="@Person" Property="@nameof(Person.Age)" />
   </p>
+  <p>
+    <ValidationError/>
+    <ValidationError Subject="@Person"/>
+  </p>
 </div>
 
 @functions {

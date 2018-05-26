@@ -30,4 +30,16 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <BlazorGenerate Remove="ValidationSummary.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="ValidationSummary.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ValidationSummary.cshtml" />
+  </ItemGroup>
+
 </Project>
