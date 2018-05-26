@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Validation.Client", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Validation.Shared", "Blazor.Validation.Shared\Blazor.Validation.Shared.csproj", "{BE48BD1D-948C-4A44-8F08-ECFDD01764A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Validation", "Blazor.Validation\Blazor.Validation.csproj", "{8A759480-AD4D-40AF-9B35-482E12516DD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Validation", "Blazor.Validation\Blazor.Validation.csproj", "{8A759480-AD4D-40AF-9B35-482E12516DD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09A9DF56-D5CE-4917-A872-E506823BE9D7}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
